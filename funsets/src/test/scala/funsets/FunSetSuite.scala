@@ -77,6 +77,7 @@ class FunSetSuite extends FunSuite {
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s4 = { (x: Int) => x < 3 }
   }
 
   /**
@@ -107,6 +108,41 @@ class FunSetSuite extends FunSuite {
       assert(contains(s, 1), "Union 1")
       assert(contains(s, 2), "Union 2")
       assert(!contains(s, 3), "Union 3")
+    }
+  }
+
+  test("intersect returns the intersection of the two given sets") {
+    new TestSets {
+      val set1 = intersect(s1, s4)
+      assert(contains(set1, 1), "Intersect 1")
+      assert(!contains(set1, 2), "Intersect 2")
+      assert(!contains(set1, 3), "Intersect 3")
+
+      val set2 = intersect(s3, s4)
+      assert(!contains(set2, 3), "Intersect 3")
+    }
+  }
+
+  test("diff returns the difference of the two given sets") {
+    new TestSets {
+      val s = diff(s4, s2)
+      assert(contains(s, 1), "Diff 1")
+      assert(contains(s, -1), "Diff -1")
+      assert(!contains(s, 2), "Diff 2")
+    }
+  }
+
+  test("filter returns the subset of `s` for which `p` holds") {
+    new TestSets {
+      val set1 = filter(s1, {(x: Int) => x > 2})
+      assert(!contains(set1, 1), "Filter 1")
+      assert(!contains(set1, 2), "Filter 2")
+      assert(!contains(set1, 3), "Filter 3")
+
+      val set2 = filter(s3, {(x: Int) => x > 2})
+      assert(!contains(set2, 1), "Filter 1")
+      assert(!contains(set2, 2), "Filter 2")
+      assert(contains(set2, 3), "Filter 3")
     }
   }
 
