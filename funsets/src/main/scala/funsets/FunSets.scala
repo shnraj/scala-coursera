@@ -38,7 +38,7 @@ object FunSets {
   def intersect(s: Set, t: Set): Set = {
     (x: Int) => s(x) && t(x)
   }
-  
+
   /**
    * Returns the difference of the two given sets,
    * the set of all elements of `s` that are not in `t`.
@@ -63,20 +63,24 @@ object FunSets {
   /**
    * Returns whether all bounded integers within `s` satisfy `p`.
    */
-    def forall(s: Set, p: Int => Boolean): Boolean = {
+  def forall(s: Set, p: Int => Boolean): Boolean = {
     def iter(a: Int): Boolean = {
-      if (???) ???
-      else if (???) ???
-      else iter(???)
+      if (a == bound+1) return true
+      else if (s(a) && !p(a)) return false
+      else iter(a-1)
     }
-    iter(???)
+    iter(-bound)
   }
   
   /**
    * Returns whether there exists a bounded integer within `s`
    * that satisfies `p`.
    */
-    def exists(s: Set, p: Int => Boolean): Boolean = ???
+  def exists(s: Set, p: Int => Boolean): Boolean = {
+    def iter(a: Int): Boolean = {
+      
+    }
+  }
   
   /**
    * Returns a set transformed by applying `f` to each element of `s`.

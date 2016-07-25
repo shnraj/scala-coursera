@@ -146,5 +146,15 @@ class FunSetSuite extends FunSuite {
     }
   }
 
+  test("forall returns whether all bounded integers within `s` satisfy `p`") {
+    val set1 = {(x: Int) => x > 2}
+    val set2 = singletonSet(2)
+    val p = {(y: Int) => (y%2 == 0)}
 
+    val bool_answer1 = forall(set2, p)
+    assert(bool_answer1)
+
+    val bool_answer2 = forall(set1, p)
+    assert(!bool_answer2)
+  }
 }
