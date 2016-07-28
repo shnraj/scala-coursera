@@ -157,4 +157,31 @@ class FunSetSuite extends FunSuite {
     val bool_answer2 = forall(set1, p)
     assert(!bool_answer2)
   }
+
+  test("exists returns whether there exists a bounded integer within `s` that satisfies `p`") {
+    val set1 = {(x: Int) => x > 2}
+    val set2 = singletonSet(3)
+    val p = {(y: Int) => (y%2 == 0)}
+
+    val bool_answer1 = exists(set2, p)
+    assert(!bool_answer1)
+
+    val bool_answer2 = exists(set1, p)
+    assert(bool_answer2)
+  }
+
+  ignore("map returns a set transformed by applying `f` to each element of `s`") {
+    val set2 = {(x: Int) => x > 2}
+    val set1 = singletonSet(3)
+    val p = {(y: Int) => y * 2}
+
+    val answer_set1 = map(set1, p)
+    assert(contains(answer_set1, 6), "Contains 6")
+    assert(!contains(answer_set1, 3), "Does not contain 3")
+
+    val answer_set2 = map(set2, p)
+    assert(contains(answer_set2, 6), "Contains 6")
+    assert(contains(answer_set2, 8), "Contain 8")
+    assert(!contains(answer_set2, 0), "Does not contain 0")
+  }
 }
