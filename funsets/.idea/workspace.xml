@@ -587,9 +587,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="FunSetSuite - 2016.07.27 at 11h 23m 52s.xml">
-      <configuration name="FunSetSuite" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="FunSetSuite - 2016.07.27 at 11h 24m 30s.xml">
       <configuration name="FunSetSuite" configurationId="JUnit" />
     </history-entry>
@@ -615,6 +612,9 @@
       <configuration name="FunSetSuite" configurationId="JUnit" />
     </history-entry>
     <history-entry file="FunSetSuite - 2016.07.27 at 22h 36m 05s.xml">
+      <configuration name="FunSetSuite" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="FunSetSuite - 2016.07.28 at 17h 43m 35s.xml">
       <configuration name="FunSetSuite" configurationId="JUnit" />
     </history-entry>
   </component>
