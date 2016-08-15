@@ -162,15 +162,19 @@ class FunSetSuite extends FunSuite {
     val set1 = {(x: Int) => x > 2}
     val set2 = singletonSet(3)
     val p = {(y: Int) => (y%2 == 0)}
+    val p2 = {(y: Int) => (y * 2 == 6)}
 
     val bool_answer1 = exists(set2, p)
     assert(!bool_answer1)
 
     val bool_answer2 = exists(set1, p)
     assert(bool_answer2)
+
+    val bool_answer3 = exists(set2, p2)
+    assert(bool_answer3)
   }
 
-  ignore("map returns a set transformed by applying `f` to each element of `s`") {
+  test("map returns a set transformed by applying `f` to each element of `s`") {
     val set2 = {(x: Int) => x > 2}
     val set1 = singletonSet(3)
     val p = {(y: Int) => y * 2}
