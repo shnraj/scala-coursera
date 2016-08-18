@@ -7,4 +7,4 @@
 [0m[[0minfo[0m] [0m[32m- filter returns the subset of `s` for which `p` holds[0m[0m
 [0m[[0minfo[0m] [0m[32m- forall returns whether all bounded integers within `s` satisfy `p`[0m[0m
 [0m[[0minfo[0m] [0m[32m- exists returns whether there exists a bounded integer within `s` that satisfies `p`[0m[0m
-[0m[[0minfo[0m] [0m[33m- map returns a set transformed by applying `f` to each element of `s` !!! IGNORED !!![0m[0m
+[0m[[0minfo[0m] [0m[32m- map returns a set transformed by applying `f` to each element of `s`[0m[0m

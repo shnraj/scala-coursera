@@ -38,7 +38,7 @@ abstract class TweetSet {
    * This method takes a predicate and returns a subset of all the elements
    * in the original set for which the predicate is true.
    *
-   * Question: Can we implment this method here, or should it remain abstract
+   * Question: Can we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
   def filter(p: Tweet => Boolean): TweetSet = filterAcc(p, new Empty)
@@ -51,7 +51,7 @@ abstract class TweetSet {
   /**
    * Returns a new `TweetSet` that is the union of `TweetSet`s `this` and `that`.
    *
-   * Question: Should we implment this method here, or should it remain abstract
+   * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
   def union(that: TweetSet): TweetSet
@@ -62,7 +62,7 @@ abstract class TweetSet {
    * Calling `mostRetweeted` on an empty set should throw an exception of
    * type `java.util.NoSuchElementException`.
    *
-   * Question: Should we implment this method here, or should it remain abstract
+   * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
   def mostRetweeted: Tweet
@@ -73,10 +73,18 @@ abstract class TweetSet {
    * have the highest retweet count.
    *
    * Hint: the method `remove` on TweetSet will be very useful.
-   * Question: Should we implment this method here, or should it remain abstract
+   * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def descendingByRetweet: TweetList = ???
+  def descendingByRetweet: TweetList = {
+    val list = Nil
+    val tweetSet = this
+    while (!tweetSet.isEmpty) {
+      new Cons(tweetSet.mostRetweeted, list)
+      tweetSet.remove(tweetSet.mostRetweeted)
+    }
+    list
+  }
   
   /**
    * The following methods are already implemented
@@ -104,6 +112,8 @@ abstract class TweetSet {
    * This method takes a function and applies it to every element in the set.
    */
   def foreach(f: Tweet => Unit): Unit
+
+  def isEmpty: Boolean
 }
 
 class Empty extends TweetSet {
@@ -124,6 +134,8 @@ class Empty extends TweetSet {
   def remove(tweet: Tweet): TweetSet = this
 
   def foreach(f: Tweet => Unit): Unit = ()
+
+  def isEmpty: Boolean = true
 }
 
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
@@ -137,11 +149,12 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
   def union(that: TweetSet): TweetSet = right.union(left.union(that.incl(elem)))
 
   def mostRetweeted: Tweet = {
-    val all = left.union(right)
-    if (all.mostRetweeted.retweets > elem.retweets)
-      all.mostRetweeted
-    else
+    if (left.union(right).mostRetweeted.retweets > elem.retweets) {
+      left.union(right).mostRetweeted
+    }
+    else {
       elem
+    }
   }
 
   /**
@@ -169,6 +182,8 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet {
     left.foreach(f)
     right.foreach(f)
   }
+
+  def isEmpty: Boolean = false
 }
 
 trait TweetList {
